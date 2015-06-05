@@ -1,6 +1,7 @@
 .DS_Store
 res/.DS_Store
 xcuserdata/
+xcshareddata/
 
 Pods
 Podfile.lock
