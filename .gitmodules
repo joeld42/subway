@@ -1,0 +1,3 @@
+[submodule "extern/ObjectAL"]
+	path = extern/ObjectAL
+	url = https://github.com/kstenerud/ObjectAL-for-iPhone.git
