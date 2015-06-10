@@ -30,7 +30,27 @@ class QuizViewController: UIViewController {
         "Octave"
     ]
     
+    static let intervalAbbr : [String] = [
+        "P1",
+        "m2",
+        "M2",
+        "m3",
+        "M3",
+        "P4",
+        "Tt",
+        "P5",
+        "m6",
+        "M6",
+        "m7",
+        "M7",
+        "P8"
+    ]
+
+    
+    @IBOutlet weak var answerLabel: UILabel!
+    @IBOutlet weak var promptLabel: UILabel!
     @IBOutlet weak var playButton: UIButton!
+    
     var isPlaying : Bool = false
     var state : QuizState = .Paused
     
@@ -89,6 +109,8 @@ class QuizViewController: UIViewController {
         let player = NotePlayer.sharedInstance
         
         currentAnswer = secondNote - firstNote
+        promptLabel.text = "Identify the Interval...";
+        answerLabel.text = "?";
         
 //        println("Simul = \(simul) countdown \(noteCountdown)")
         
@@ -110,6 +132,11 @@ class QuizViewController: UIViewController {
     func sayAnswer()
     {
         let currInterval = QuizViewController.intervalNames[currentAnswer];
+        let currAbbr = QuizViewController.intervalAbbr[currentAnswer];
+        
+        answerLabel.text = currAbbr;
+        promptLabel.text = currInterval;
+        
         let currSample = self.sampleNameFromIntervalName( currInterval )
         println( "ANSWER: \(currInterval) (\(currSample))")
 
