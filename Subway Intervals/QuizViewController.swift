@@ -112,7 +112,7 @@ class QuizViewController: UIViewController {
         let currInterval = QuizViewController.intervalNames[currentAnswer];
         let currSample = self.sampleNameFromIntervalName( currInterval )
         println( "ANSWER: \(currInterval) (\(currSample))")
-        
+
         var oal = OALSimpleAudio.sharedInstance()
         oal.playEffect( currSample )
     }

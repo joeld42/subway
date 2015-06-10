@@ -27,12 +27,15 @@ intervalPhrases = [
 	"D. Sharp",
 	"D. Flat",
 	"E.",
-	"E. Flat"
+	"E. Flat",
 	"F.",
 	"F. Sharp",
 	"G.",
 	"G. Sharp",
-	"G. Flat"
+	"G. Flat",
+
+	# Misc prompts
+	"above",	
 ]
 
 for phrase in intervalPhrases:

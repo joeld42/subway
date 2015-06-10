@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AudioToolbox
 
 class NoteInfo : NSObject
 {
@@ -19,6 +20,7 @@ class NoteInfo : NSObject
     var sampleRealFreq: Double = 0.0
     var samplePitchShift: Double = 1.0
     
+
 //    init( usingSample name : String, freq : Float, midiNote : Int, sampleName : String, sampleFreq : Float ) {
 //        self.noteName = name
 //        self.freq = freq

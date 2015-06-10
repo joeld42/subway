@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import AudioToolbox
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    let audioSession = AVAudioSession.sharedInstance()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
@@ -44,11 +45,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func setupAudio() {
+        
+        // Setup OAL session (This makes Background mode work)
+        var oalSession = OALAudioSession.sharedInstance()
+        oalSession.audioSessionCategory = AVAudioSessionCategoryPlayback;
+        
+        // Setup openal and preload samples
         var oal = OALSimpleAudio.sharedInstance()
-        oal.preloadEffect("whole_step.aiff");
+        oal.preloadEffect("whole_step.aiff")
         
         // Load the piano samples
         NotePlayer.sharedInstance.loadSamples()
+        
+//        // play BG music for testing
+//        oal.playBg( "jungle_planet.caf", loop: true )
     }
     
 
