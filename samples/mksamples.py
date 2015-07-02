@@ -38,17 +38,21 @@ intervalPhrases = [
 	"above",	
 ]
 
-for phrase in intervalPhrases:
-	name = phrase.replace( " ", "_").lower()
-	name = name.replace("-", "")
-	name = name.replace(".", "")
+if __name__=='__main__':
 
-	filename = name + ".aiff"
-	
-	exists = "(exists)"
-	if (not os.path.exists(filename)):
-		cmd = "say -o %s -v Samantha %s" % (filename, phrase)
-		os.system(cmd)
-		exists = ""
+	for phrase in intervalPhrases:
+		name = phrase.replace( " ", "_").lower()
+		name = name.replace("-", "")
+		name = name.replace(".", "")
 
-	print phrase, filename, exists
+		filename = name + ".aiff"
+		
+		exists = "(exists)"
+		if (not os.path.exists(filename)):
+			cmd = "say -o %s -v Samantha %s" % (filename, phrase)
+			os.system(cmd)
+			exists = ""			
+
+
+		print '"%s",' % filename
+		#print phrase, filename, exists

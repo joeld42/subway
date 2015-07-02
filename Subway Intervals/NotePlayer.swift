@@ -16,6 +16,9 @@ class NoteInfo : NSObject
     var midiNote : Int = 36
 
     var sampleName: String?
+    var noteSampleSharpName: String?
+    var noteSampleFlatName: String?
+    var isSharpKey: Bool = false
     var isRealSample : Bool = false
     var sampleRealFreq: Double = 0.0
     var samplePitchShift: Double = 1.0
@@ -89,6 +92,20 @@ class NotePlayer : NSObject
             "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"
         ]
         
+        let noteNameSharpSamples : [String] = [
+             "c.aiff", "c_sharp.aiff", "d.aiff", "d_sharp.aiff",
+             "e.aiff", "f.aiff", "f_sharp.aiff", "g.aiff",
+             "g_sharp.aiff", "a.aiff", "a_sharp.aiff", "b.aiff"
+        ]
+        let noteNameFlatSamples : [String] = [
+            "c.aiff", "d_flat.aiff", "d.aiff", "e_flat.aiff",
+            "e.aiff", "f.aiff", "g_flat.aiff", "g.aiff",
+            "a_flat.aiff", "a.aiff", "b_flat.aiff", "b.aiff"
+        ]
+        
+        let sharpKeys : [String] = [ "C", "G", "D", "A", "E", "B", "F#" ]
+        
+        
         // http://subsynth.sourceforge.net/midinote2freq.html
         var a = 440.0 // a is 440 hz
         for midival in 0...127 {
@@ -119,6 +136,21 @@ class NotePlayer : NSObject
         for midival in 0...127
         {
             let info = notes[midival]
+            let noteIndex = midival % 12
+            info.noteSampleSharpName = noteNameSharpSamples[ noteIndex ];
+            info.noteSampleFlatName = noteNameFlatSamples[ noteIndex ];
+            
+            // CBB: this should work?
+            //info.isSharpKey = sharpKeys.contains(info.noteName)
+            for sharpKeyName in sharpKeys
+            {
+                if (sharpKeyName == info.noteName)
+                {
+                    info.isSharpKey = true;
+                    break;
+                }
+            }
+            
             if (info.sampleName == nil)
             {
                 var bestDist = 128
@@ -152,6 +184,20 @@ class NotePlayer : NSObject
         var oal = OALSimpleAudio.sharedInstance()
         let info = notes[midival]
         oal.playEffect( info.sampleName, volume: 1.0, pitch: Float(info.samplePitchShift), pan: 0.0, loop: false )
+    }
+    
+    func playNoteName( rootVal : Int, midival : Int )
+    {
+        var oal = OALSimpleAudio.sharedInstance()
+        let info = notes[midival]
+        if (notes[rootVal].isSharpKey)
+        {
+            oal.playEffect( info.noteSampleSharpName )
+        }
+        else
+        {
+            oal.playEffect( info.noteSampleFlatName )
+        }
     }
     
 }
