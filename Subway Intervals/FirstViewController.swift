@@ -36,7 +36,7 @@ class FirstViewController: UIViewController {
     }
     
     @IBAction func onTestNote(sender: AnyObject) {
-        var button = sender as! UIButton
+        let button = sender as! UIButton
 
         NotePlayer.sharedInstance.playNote( button.tag )
     }

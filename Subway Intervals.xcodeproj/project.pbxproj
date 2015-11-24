@@ -26,6 +26,7 @@
 		6D1E397F1B44357A0017B40F /* g_sharp.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 6D1E396D1B44357A0017B40F /* g_sharp.aiff */; };
 		6D1E39801B44357A0017B40F /* g.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 6D1E396E1B44357A0017B40F /* g.aiff */; };
 		6D3667B81B2898E500FEA488 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3667B71B2898E500FEA488 /* SettingsViewController.swift */; };
+		6D3DAF131C044F190099FF21 /* SubwayTabAnimationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3DAF121C044F190099FF21 /* SubwayTabAnimationHelper.swift */; };
 		6DAC48BF1B183C1F00408721 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC48BE1B183C1F00408721 /* AppDelegate.swift */; };
 		6DAC48C11B183C1F00408721 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC48C01B183C1F00408721 /* FirstViewController.swift */; };
 		6DAC48C31B183C1F00408721 /* QuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DAC48C21B183C1F00408721 /* QuizViewController.swift */; };
@@ -128,6 +129,7 @@
 		6D1E396D1B44357A0017B40F /* g_sharp.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = g_sharp.aiff; sourceTree = "<group>"; };
 		6D1E396E1B44357A0017B40F /* g.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = g.aiff; sourceTree = "<group>"; };
 		6D3667B71B2898E500FEA488 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		6D3DAF121C044F190099FF21 /* SubwayTabAnimationHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubwayTabAnimationHelper.swift; sourceTree = "<group>"; };
 		6DAC48B91B183C1F00408721 /* Subway Intervals.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Subway Intervals.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DAC48BD1B183C1F00408721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6DAC48BE1B183C1F00408721 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				6DAC499B1B1B7FB500408721 /* QuizConfig.swift */,
 				6DAC499D1B1CB87F00408721 /* QuizQuestion.swift */,
 				6DAC499F1B1CB89900408721 /* QuizGenerator.swift */,
+				6D3DAF121C044F190099FF21 /* SubwayTabAnimationHelper.swift */,
 			);
 			path = "Subway Intervals";
 			sourceTree = "<group>";
@@ -555,6 +558,8 @@
 		6DAC48B11B183C1F00408721 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0710;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Joel Davis";
 				TargetAttributes = {
@@ -695,6 +700,7 @@
 				6DAC49961B18C34D00408721 /* OALTools.m in Sources */,
 				6DAC48C11B183C1F00408721 /* FirstViewController.swift in Sources */,
 				6DAC497E1B18C34D00408721 /* OALActionManager.m in Sources */,
+				6D3DAF131C044F190099FF21 /* SubwayTabAnimationHelper.swift in Sources */,
 				6D3667B81B2898E500FEA488 /* SettingsViewController.swift in Sources */,
 				6DAC49871B18C34D00408721 /* ALChannelSource.m in Sources */,
 				6DAC498E1B18C34D00408721 /* OpenALManager.m in Sources */,

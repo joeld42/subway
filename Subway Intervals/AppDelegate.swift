@@ -47,11 +47,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func setupAudio() {
         
         // Setup OAL session (This makes Background mode work)
-        var oalSession = OALAudioSession.sharedInstance()
+        let oalSession = OALAudioSession.sharedInstance()
         oalSession.audioSessionCategory = AVAudioSessionCategoryPlayback;
         
         // Setup openal and preload samples
-        var oal = OALSimpleAudio.sharedInstance()
+        let oal = OALSimpleAudio.sharedInstance()
         oal.preloadEffect("whole_step.aiff")
         
         // Load the piano samples

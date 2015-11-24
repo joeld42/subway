@@ -18,11 +18,11 @@ enum QuestionType : UInt32 {
     static func randomQuestionType() -> QuestionType {
         // find the maximum enum value
         var maxValue: UInt32 = 0
-        while let _ = self(rawValue: ++maxValue) {}
+        while let _ = self.init(rawValue: ++maxValue) {}
         
         // pick and return a new value
         let rand = arc4random_uniform(maxValue)
-        return self(rawValue: rand)!
+        return self.init(rawValue: rand)!
     }
 }
 
@@ -131,7 +131,7 @@ class QuizViewController: UIViewController {
             noteCountdown -= 1
         }
         
-        var secondNote = firstNote + Int(arc4random_uniform(13))
+        let secondNote = firstNote + Int(arc4random_uniform(13))
         let player = NotePlayer.sharedInstance
         
         currentAnswer = secondNote - firstNote
@@ -140,14 +140,14 @@ class QuizViewController: UIViewController {
         
         if (qtype == .NoteName)
         {
-            promptLabel.text = "Note name question..."; // TODO: better prompt
-            answerLabel.text = "?";
-            
             currentAnswerNoteNameRoot = firstNote
             currentAnswerNoteName = secondNote
             
             let currInterval = QuizViewController.intervalNames[currentAnswer];
             let currAbbr = QuizViewController.intervalAbbr[currentAnswer];
+            
+            promptLabel.text = "\(currInterval) above NOTE";
+            answerLabel.text = "?"
 
             let currSample = self.sampleNameFromIntervalName( currInterval )
             let sampleDuration = self.durationForIntervalSample( currSample ) - 0.25 // subtract a little time to get a smoother overlap
@@ -194,10 +194,10 @@ class QuizViewController: UIViewController {
     
     func playSampleAfterDelay( sampleName : String, delayTimeSec : Double )
     {
-        var oal = OALSimpleAudio.sharedInstance()
+        let oal = OALSimpleAudio.sharedInstance()
         let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delayTimeSec * Double(NSEC_PER_SEC)))
         
-        println("playSampleAfterDelay: \(sampleName) delay \(delayTime)" )
+        print("playSampleAfterDelay: \(sampleName) delay \(delayTime)" )
         if (delayTime==0)
         {
             oal.playEffect( sampleName )
@@ -234,7 +234,7 @@ class QuizViewController: UIViewController {
         {
             // Note name question
             let player = NotePlayer.sharedInstance
-            println("Say note names: \(currentAnswerNoteNameRoot) \(currentAnswerNoteName)")
+            print("Say note names: \(currentAnswerNoteNameRoot) \(currentAnswerNoteName)")
             player.playNoteName( currentAnswerNoteNameRoot, midival: currentAnswerNoteName )
         }
         else
@@ -247,9 +247,9 @@ class QuizViewController: UIViewController {
             promptLabel.text = currInterval;
             
             let currSample = self.sampleNameFromIntervalName( currInterval )
-            println( "ANSWER: \(currInterval) (\(currSample))")
+            print( "ANSWER: \(currInterval) (\(currSample))")
 
-            var oal = OALSimpleAudio.sharedInstance()
+            let oal = OALSimpleAudio.sharedInstance()
             oal.playEffect( currSample )
         }
     }

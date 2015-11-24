@@ -11,13 +11,18 @@ import AudioToolbox
 
 class NoteInfo : NSObject
 {
-    var noteName : String = "C4"
+    var noteName : String = "C4" // name of the note with octave, using sharps
     var freq: Double = 65.4063913251497
     var midiNote : Int = 36
 
     var sampleName: String?
-    var noteSampleSharpName: String?
+    
+    var noteSampleSharpName: String? // Sample for the note name in sharp keys
     var noteSampleFlatName: String?
+
+    var noteSharpName: String? // Name of the note (without octave) in sharp keys
+    var noteFlatName: String?
+    
     var isSharpKey: Bool = false
     var isRealSample : Bool = false
     var sampleRealFreq: Double = 0.0
@@ -92,6 +97,10 @@ class NotePlayer : NSObject
             "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"
         ]
         
+        let noteFlatNames : [String] = [
+            "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"
+        ]
+        
         let noteNameSharpSamples : [String] = [
              "c.aiff", "c_sharp.aiff", "d.aiff", "d_sharp.aiff",
              "e.aiff", "f.aiff", "f_sharp.aiff", "g.aiff",
@@ -107,15 +116,16 @@ class NotePlayer : NSObject
         
         
         // http://subsynth.sourceforge.net/midinote2freq.html
-        var a = 440.0 // a is 440 hz
+        let a = 440.0 // a is 440 hz
         for midival in 0...127 {
 
             let noteName = noteNames[ midival % 12 ]
+            
             let noteOctave = (midival / 12) + 1
             let filename = "\(noteName)\(noteOctave)v10.wav"
             
-            var freq = (a / 32.0) * pow( 2, (Double(midival) - 9.0) / 12.0)
-            println( "\(noteName)\(noteOctave) MIDI \(midival) freq \(freq)" )
+            let freq = (a / 32.0) * pow( 2, (Double(midival) - 9.0) / 12.0)
+            print( "\(noteName)\(noteOctave) MIDI \(midival) freq \(freq)" )
 
             let info = NoteInfo()
             info.noteName = noteName
@@ -125,7 +135,7 @@ class NotePlayer : NSObject
             if (samples.contains(filename))
             {
                 info.useSample( filename, sampleFreq: freq )
-                var oal = OALSimpleAudio.sharedInstance()
+                let oal = OALSimpleAudio.sharedInstance()
                 oal.preloadEffect(info.sampleName );
             }
             
@@ -137,6 +147,8 @@ class NotePlayer : NSObject
         {
             let info = notes[midival]
             let noteIndex = midival % 12
+            info.noteSharpName = noteNames[ noteIndex ]
+            info.noteFlatName = noteFlatNames[noteIndex]
             info.noteSampleSharpName = noteNameSharpSamples[ noteIndex ];
             info.noteSampleFlatName = noteNameFlatSamples[ noteIndex ];
             
@@ -181,14 +193,14 @@ class NotePlayer : NSObject
     
     func playNote( midival : Int )
     {
-        var oal = OALSimpleAudio.sharedInstance()
+        let oal = OALSimpleAudio.sharedInstance()
         let info = notes[midival]
         oal.playEffect( info.sampleName, volume: 1.0, pitch: Float(info.samplePitchShift), pan: 0.0, loop: false )
     }
     
     func playNoteName( rootVal : Int, midival : Int )
     {
-        var oal = OALSimpleAudio.sharedInstance()
+        let oal = OALSimpleAudio.sharedInstance()
         let info = notes[midival]
         if (notes[rootVal].isSharpKey)
         {
