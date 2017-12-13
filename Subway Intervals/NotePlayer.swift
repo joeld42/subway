@@ -39,7 +39,7 @@ class NoteInfo : NSObject
 //        self.samplePitchShift = freq/sampleFreq
 //    }
     
-    func useSample( sampleName : String, sampleFreq : Double )
+    func useSample( _ sampleName : String, sampleFreq : Double )
     {
         self.sampleName = sampleName
         self.sampleRealFreq = sampleFreq
@@ -54,10 +54,13 @@ class NoteInfo : NSObject
 class NotePlayer : NSObject
 {
     static let sharedInstance = NotePlayer()
-    var notes = [NoteInfo]( count:128, repeatedValue : NoteInfo() )
+    var notes = [NoteInfo]( repeating: NoteInfo(), count: 128 )
     
     func loadSamples () {
-        var oal = OALSimpleAudio.sharedInstance()
+        
+        print("loadSamples...");
+        
+        var _ = OALSimpleAudio.sharedInstance()
         
         // These are the samples we have
         let samples : Set<String> = [
@@ -136,7 +139,7 @@ class NotePlayer : NSObject
             {
                 info.useSample( filename, sampleFreq: freq )
                 let oal = OALSimpleAudio.sharedInstance()
-                oal.preloadEffect(info.sampleName );
+                oal?.preloadEffect(info.sampleName );
             }
             
             notes[midival] = info
@@ -191,24 +194,26 @@ class NotePlayer : NSObject
         }
     }
     
-    func playNote( midival : Int )
+    func playNote( _ midival : Int )
     {
+        print("playNote \(midival)")
+        
         let oal = OALSimpleAudio.sharedInstance()
         let info = notes[midival]
-        oal.playEffect( info.sampleName, volume: 1.0, pitch: Float(info.samplePitchShift), pan: 0.0, loop: false )
+        let _ = oal?.playEffect( info.sampleName, volume: 1.0, pitch: Float(info.samplePitchShift), pan: 0.0, loop: false )
     }
     
-    func playNoteName( rootVal : Int, midival : Int )
+    func playNoteName( _ rootVal : Int, midival : Int )
     {
         let oal = OALSimpleAudio.sharedInstance()
         let info = notes[midival]
         if (notes[rootVal].isSharpKey)
         {
-            oal.playEffect( info.noteSampleSharpName )
+            let _ = oal?.playEffect( info.noteSampleSharpName )
         }
         else
         {
-            oal.playEffect( info.noteSampleFlatName )
+            let _ = oal?.playEffect( info.noteSampleFlatName )
         }
     }
     

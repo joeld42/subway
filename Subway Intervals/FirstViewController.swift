@@ -10,7 +10,7 @@ import UIKit
 
 class FirstViewController: UIViewController {
 
-    @IBAction func onTest(sender: AnyObject)
+    @IBAction func onTest(_ sender: AnyObject)
     {
 //        var oal = OALSimpleAudio.sharedInstance()
 //        oal.playEffect( "whole_step.aiff" )
@@ -35,10 +35,11 @@ class FirstViewController: UIViewController {
         //     }];
     }
     
-    @IBAction func onTestNote(sender: AnyObject) {
+    @IBAction func onTestNote(_ sender: AnyObject) {
         let button = sender as! UIButton
 
-        NotePlayer.sharedInstance.playNote( button.tag )
+        print("onTestNote \(button.tag)...");
+        NotePlayer.sharedInstance.playNote( button.tag )        
     }
     
     override func viewDidLoad() {

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JFS-zr-sZS">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Background Art View Controller-->
+        <scene sceneID="dOu-q5-RWG">
+            <objects>
+                <viewController id="JFS-zr-sZS" customClass="BackgroundArtViewController" customModule="Subway_Intervals" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6jt-xZ-MeR"/>
+                        <viewControllerLayoutGuide type="bottom" id="2lu-fC-SF0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ia9-fZ-xmV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="piano1.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="cFC-Io-KF6">
+                                <rect key="frame" x="20" y="20" width="560" height="580"/>
+                            </imageView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="roK-Cm-OEs">
+                                <rect key="frame" x="20" y="0.0" width="560" height="600"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="v67-mo-L47">
+                                    <rect key="frame" x="0.0" y="0.0" width="560" height="600"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <vibrancyEffect>
+                                    <blurEffect style="dark"/>
+                                </vibrancyEffect>
+                            </visualEffectView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="2lu-fC-SF0" firstAttribute="top" secondItem="cFC-Io-KF6" secondAttribute="bottom" id="43P-la-mxk"/>
+                            <constraint firstItem="cFC-Io-KF6" firstAttribute="leading" secondItem="Ia9-fZ-xmV" secondAttribute="leadingMargin" id="ITz-N9-zz2"/>
+                            <constraint firstItem="cFC-Io-KF6" firstAttribute="top" secondItem="6jt-xZ-MeR" secondAttribute="bottom" id="Snz-Fl-i8t"/>
+                            <constraint firstItem="roK-Cm-OEs" firstAttribute="leading" secondItem="Ia9-fZ-xmV" secondAttribute="leadingMargin" id="aAI-8H-7ai"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="cFC-Io-KF6" secondAttribute="trailing" id="f7k-1l-Y8h"/>
+                            <constraint firstItem="2lu-fC-SF0" firstAttribute="top" secondItem="roK-Cm-OEs" secondAttribute="bottom" id="h2c-v4-bVQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="roK-Cm-OEs" secondAttribute="trailing" id="j2q-5K-xwU"/>
+                            <constraint firstItem="roK-Cm-OEs" firstAttribute="top" secondItem="Ia9-fZ-xmV" secondAttribute="topMargin" id="rIK-BO-Ax8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="cFC-Io-KF6" id="tZF-Ph-YSb"/>
+                        <outlet property="blurEffectView" destination="roK-Cm-OEs" id="MuN-vW-nc7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CZf-oI-7hA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="362" y="351"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="piano1.jpeg" width="1280" height="843"/>
+    </resources>
+</document>

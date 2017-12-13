@@ -9,19 +9,21 @@
 import UIKit
 
 enum QuizState {
-    case Paused, Question, WaitForAnswer
+    case paused, question, waitForAnswer
 }
 
 enum QuestionType : UInt32 {
-    case IntervalStep, IntervalSimul, NoteName
+    case intervalStep, intervalSimul, noteName
     
     static func randomQuestionType() -> QuestionType {
         // find the maximum enum value
-        var maxValue: UInt32 = 0
-        while let _ = self.init(rawValue: ++maxValue) {}
+//        var maxValue: UInt32 = 0
+//        maxValue += 1;
+//        while let _ = self.init(rawValue: maxValue) {}
         
         // pick and return a new value
-        let rand = arc4random_uniform(maxValue)
+        //FIXME
+        let rand = arc4random_uniform(3)
         return self.init(rawValue: rand)!
     }
 }
@@ -66,7 +68,7 @@ class QuizViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     
     var isPlaying : Bool = false
-    var state : QuizState = .Paused
+    var state : QuizState = .paused
     
     var generator = QuizGenerator()
     
@@ -80,7 +82,7 @@ class QuizViewController: UIViewController {
     var firstNote = 38;
     var noteCountdown = 0;
     
-    var qtype : QuestionType = .IntervalStep
+    var qtype : QuestionType = .intervalStep
     
     override func viewDidLoad()
     {
@@ -94,23 +96,27 @@ class QuizViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func onTestQuestion(sender: AnyObject)
+    @IBAction func onTestQuestion(_ sender: AnyObject)
     {
-        let app = UIApplication.sharedApplication()
-        if (state == .Paused)
+        print("On Test Question...");
+        
+        let app = UIApplication.shared
+        if (state == .paused)
         {
-            playButton.setTitle("Stop", forState: UIControlState.Normal )
-            state = .Question
+            print("was paused, new state is question");
+            playButton.setTitle("Stop", for: UIControlState() )
+            state = .question
             self.quizUpdate()
             
-            app.idleTimerDisabled = true
+            app.isIdleTimerDisabled = true
         }
         else
         {
-            playButton.setTitle("Start", forState: UIControlState.Normal )
-            state = .Paused
+            print("was playeing, new state is paused");
+            playButton.setTitle("Start", for: UIControlState() )
+            state = .paused
             
-            app.idleTimerDisabled = false
+            app.isIdleTimerDisabled = false
         }
     }
     
@@ -125,20 +131,20 @@ class QuizViewController: UIViewController {
             qtype = QuestionType.randomQuestionType();
             
             // DBG
-            qtype = QuestionType.NoteName;
+            //qtype = QuestionType.noteName;
 
         } else {
             noteCountdown -= 1
         }
         
         let secondNote = firstNote + Int(arc4random_uniform(13))
-        let player = NotePlayer.sharedInstance
+        _ = NotePlayer.sharedInstance
         
         currentAnswer = secondNote - firstNote
         
-//        println("Simul = \(simul) countdown \(noteCountdown)")
+        print("qtype = \(qtype) countdown \(noteCountdown)")
         
-        if (qtype == .NoteName)
+        if (qtype == .noteName)
         {
             currentAnswerNoteNameRoot = firstNote
             currentAnswerNoteName = secondNote
@@ -162,7 +168,7 @@ class QuizViewController: UIViewController {
 
             // Interval, step or simul
             var delayTimeSec = 0.5
-            if (qtype == .IntervalSimul)
+            if (qtype == .intervalSimul)
             {
                 delayTimeSec = 0.01
             }
@@ -173,64 +179,42 @@ class QuizViewController: UIViewController {
         
     }
     
-    func playNoteNameAfterDelay( rootValue : Int, noteValue : Int, delayTimeSec : Double )
+    func playNoteNameAfterDelay( _ rootValue : Int, noteValue : Int, delayTimeSec : Double )
     {
         let player = NotePlayer.sharedInstance
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delayTimeSec * Double(NSEC_PER_SEC)))
+        let delayTime = DispatchTime.now() + Double(Int64(delayTimeSec * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         
-        if (delayTime==0)
-        {
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
             player.playNoteName( rootValue, midival: noteValue );
         }
-        else
-        {
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
-                player.playNoteName( rootValue, midival: noteValue );
-            }
-        }
-        
     }
 
     
-    func playSampleAfterDelay( sampleName : String, delayTimeSec : Double )
+    func playSampleAfterDelay( _ sampleName : String, delayTimeSec : Double )
     {
         let oal = OALSimpleAudio.sharedInstance()
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delayTimeSec * Double(NSEC_PER_SEC)))
+        let delayTime = DispatchTime.now() + Double(Int64(delayTimeSec * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         
         print("playSampleAfterDelay: \(sampleName) delay \(delayTime)" )
-        if (delayTime==0)
-        {
-            oal.playEffect( sampleName )
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
+            oal?.playEffect( sampleName )
         }
-        else
-        {
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
-                oal.playEffect( sampleName )
-            }
-        }
+    
     }
     
-    func playNoteAfterDelay( noteValue : Int, delayTimeSec : Double )
+    func playNoteAfterDelay( _ noteValue : Int, delayTimeSec : Double )
     {
         let player = NotePlayer.sharedInstance
-        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delayTimeSec * Double(NSEC_PER_SEC)))
+        let delayTime = DispatchTime.now() + Double(Int64(delayTimeSec * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
 
-        if (delayTime==0)
-        {
+        DispatchQueue.main.asyncAfter(deadline: delayTime) {
             player.playNote(noteValue)
         }
-        else
-        {
-            dispatch_after(delayTime, dispatch_get_main_queue()) {
-                player.playNote(noteValue)
-            }
-        }
-        
     }
     
     func sayAnswer()
     {
-        if (qtype == .NoteName)
+        if (qtype == .noteName)
         {
             // Note name question
             let player = NotePlayer.sharedInstance
@@ -250,16 +234,16 @@ class QuizViewController: UIViewController {
             print( "ANSWER: \(currInterval) (\(currSample))")
 
             let oal = OALSimpleAudio.sharedInstance()
-            oal.playEffect( currSample )
+            oal?.playEffect( currSample )
         }
     }
     
-    func sampleNameFromIntervalName( intervalName : String) -> String
+    func sampleNameFromIntervalName( _ intervalName : String) -> String
     {
-        return intervalName.lowercaseString.stringByReplacingOccurrencesOfString(" ", withString: "_", options: NSStringCompareOptions.LiteralSearch, range: nil) + ".aiff"
+        return intervalName.lowercased().replacingOccurrences(of: " ", with: "_", options: NSString.CompareOptions.literal, range: nil) + ".aiff"
     }
     
-    func durationForIntervalSample( intervalSampleName : String ) -> Double
+    func durationForIntervalSample( _ intervalSampleName : String ) -> Double
     {
         // from getduration.py script
         let intervalDurations = [
@@ -282,30 +266,35 @@ class QuizViewController: UIViewController {
     
     func quizUpdate()
     {
+        print( "In quizUpdate...");
+        
         var updateTimeSec = 2.5;
-        if ((qtype == .NoteName) && (state == .Question))
+        if ((qtype == .noteName) && (state == .question))
         {
             // More time for the "note name" prompt...
             updateTimeSec = 4.5;
         }
-        let nextUpdateTime = dispatch_time(DISPATCH_TIME_NOW, Int64(updateTimeSec * Double(NSEC_PER_SEC)))
+        let nextUpdateTime = DispatchTime.now() + Double(Int64(updateTimeSec * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
         
         switch (state)
         {
-        case .Paused:
+        case .paused:
             // Don't update
+            print("is paused, no update...");
             return
             
-        case .Question:
+        case .question:
+            print("is question, will wait for answer...")
             self.askQuestion()
-            state = .WaitForAnswer
+            state = .waitForAnswer
             
-        case .WaitForAnswer:
+        case .waitForAnswer:
+            print("is waitForAnswer, will sayAnswer")
             self.sayAnswer()
-            state = .Question
+            state = .question
         }
 
-        dispatch_after(nextUpdateTime, dispatch_get_main_queue()) {
+        DispatchQueue.main.asyncAfter(deadline: nextUpdateTime) {
             self.quizUpdate()
         }
 

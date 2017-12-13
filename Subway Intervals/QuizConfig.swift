@@ -15,7 +15,7 @@ class QuizConfig
     var presetTitle : String = "Custom"
     var presetDesc : String = ""
     
-    var askInterval = [ Bool ]( count : 12, repeatedValue : true )
+    var askInterval = [ Bool ]( repeating: true, count: 12 )
     
     
 }
