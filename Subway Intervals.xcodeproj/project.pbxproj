@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1FD9EAC0B900524686C1494F /* Pods_Subway_Intervals.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C8387548BA3C79B4723F205 /* Pods_Subway_Intervals.framework */; };
 		6D1E396F1B44357A0017B40F /* a_flat.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 6D1E395D1B44357A0017B40F /* a_flat.aiff */; };
 		6D1E39701B44357A0017B40F /* a_sharp.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 6D1E395E1B44357A0017B40F /* a_sharp.aiff */; };
 		6D1E39711B44357A0017B40F /* a.aiff in Resources */ = {isa = PBXBuildFile; fileRef = 6D1E395F1B44357A0017B40F /* a.aiff */; };
@@ -114,6 +115,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4EA15B549775B15A6525FD83 /* Pods-Subway Intervals.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Subway Intervals.release.xcconfig"; path = "Pods/Target Support Files/Pods-Subway Intervals/Pods-Subway Intervals.release.xcconfig"; sourceTree = "<group>"; };
+		5CA131B747AFE9724A5435B0 /* Pods-Subway Intervals.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Subway Intervals.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Subway Intervals/Pods-Subway Intervals.debug.xcconfig"; sourceTree = "<group>"; };
+		6D0AD0671FE39F9E009B5770 /* Subway Intervals.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Subway Intervals.entitlements"; sourceTree = "<group>"; };
 		6D1E395D1B44357A0017B40F /* a_flat.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = a_flat.aiff; sourceTree = "<group>"; };
 		6D1E395E1B44357A0017B40F /* a_sharp.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = a_sharp.aiff; sourceTree = "<group>"; };
 		6D1E395F1B44357A0017B40F /* a.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = a.aiff; sourceTree = "<group>"; };
@@ -255,6 +259,7 @@
 		6DAC499D1B1CB87F00408721 /* QuizQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizQuestion.swift; sourceTree = "<group>"; };
 		6DAC499F1B1CB89900408721 /* QuizGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizGenerator.swift; sourceTree = "<group>"; };
 		6DAC49A11B202A4D00408721 /* minor_seventh.aiff */ = {isa = PBXFileReference; lastKnownFileType = audio.aiff; path = minor_seventh.aiff; sourceTree = "<group>"; };
+		7C8387548BA3C79B4723F205 /* Pods_Subway_Intervals.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Subway_Intervals.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		83122BC550DA64B3A064E6C2 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		A29EAA6B47CC84F72EE61BE0 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C208A4F4BB5EC8A84F14F998 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -265,6 +270,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FD9EAC0B900524686C1494F /* Pods_Subway_Intervals.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,6 +324,7 @@
 		6DAC48BB1B183C1F00408721 /* Subway Intervals */ = {
 			isa = PBXGroup;
 			children = (
+				6D0AD0671FE39F9E009B5770 /* Subway Intervals.entitlements */,
 				6D3667B91B2898F200FEA488 /* View Controllers */,
 				6DAC48BE1B183C1F00408721 /* AppDelegate.swift */,
 				6DAC49971B18C41300408721 /* NotePlayer.swift */,
@@ -537,6 +544,7 @@
 			isa = PBXGroup;
 			children = (
 				C208A4F4BB5EC8A84F14F998 /* libPods.a */,
+				7C8387548BA3C79B4723F205 /* Pods_Subway_Intervals.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -546,6 +554,8 @@
 			children = (
 				A29EAA6B47CC84F72EE61BE0 /* Pods.debug.xcconfig */,
 				83122BC550DA64B3A064E6C2 /* Pods.release.xcconfig */,
+				5CA131B747AFE9724A5435B0 /* Pods-Subway Intervals.debug.xcconfig */,
+				4EA15B549775B15A6525FD83 /* Pods-Subway Intervals.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -557,9 +567,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6DAC48DA1B183C1F00408721 /* Build configuration list for PBXNativeTarget "Subway Intervals" */;
 			buildPhases = (
+				0BE3441E0D57F59F1609B7A1 /* [CP] Check Pods Manifest.lock */,
 				6DAC48B51B183C1F00408721 /* Sources */,
 				6DAC48B61B183C1F00408721 /* Frameworks */,
 				6DAC48B71B183C1F00408721 /* Resources */,
+				6FCB38F0E4FC68AA339D3092 /* [CP] Embed Pods Frameworks */,
+				93C780E64DACF790024F99E9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -583,10 +596,14 @@
 				TargetAttributes = {
 					6DAC48B81B183C1F00408721 = {
 						CreatedOnToolsVersion = 6.3.2;
-						LastSwiftMigration = 0820;
+						DevelopmentTeam = T4P743PG5Z;
+						LastSwiftMigration = 0920;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
+							};
+							com.apple.DataProtection = {
+								enabled = 0;
 							};
 						};
 					};
@@ -688,6 +705,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0BE3441E0D57F59F1609B7A1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6FCB38F0E4FC68AA339D3092 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Subway Intervals/Pods-Subway Intervals-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93C780E64DACF790024F99E9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Subway Intervals/Pods-Subway Intervals-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6DAC48B51B183C1F00408721 /* Sources */ = {
@@ -845,27 +910,31 @@
 		};
 		6DAC48DB1B183C1F00408721 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A29EAA6B47CC84F72EE61BE0 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 5CA131B747AFE9724A5435B0 /* Pods-Subway Intervals.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = T4P743PG5Z;
 				INFOPLIST_FILE = "Subway Intervals/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tapnik.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
 		6DAC48DC1B183C1F00408721 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83122BC550DA64B3A064E6C2 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 4EA15B549775B15A6525FD83 /* Pods-Subway Intervals.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = T4P743PG5Z;
 				INFOPLIST_FILE = "Subway Intervals/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.tapnik.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
